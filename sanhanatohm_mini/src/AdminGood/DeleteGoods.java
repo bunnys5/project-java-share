@@ -25,11 +25,11 @@ public class DeleteGoods extends JPanel implements ActionListener {
 
 	DefaultTableModel tableModel;
 
-	JTextField nameTxt;
-	JTextField priceTxt;
-	JTextField stockTxt;
+	JLabel nameTxt;
+	JLabel priceTxt;
+	JLabel stockTxt;
 	
-	private static final String editString = "Delete";
+	private static final String deleteString = "Delete";
 	private static final String refreshString = "Refresh";
 	
 	private JTable table;
@@ -51,13 +51,13 @@ public class DeleteGoods extends JPanel implements ActionListener {
 		JLabel stockLabel = new JLabel("Stock");
 
 		// create buttons
-		JButton addBtn = new JButton(editString);
+		JButton addBtn = new JButton(deleteString);
 		JButton refreshBtn = new JButton(refreshString);
 
 		// create texts
-		nameTxt = new JTextField(20);
-		priceTxt = new JTextField(10);
-		stockTxt = new JTextField(10);
+		nameTxt = new JLabel();
+		priceTxt = new JLabel();
+		stockTxt = new JLabel();
 
 		// create control buttons.
 		addBtn.addActionListener(this);
@@ -82,19 +82,19 @@ public class DeleteGoods extends JPanel implements ActionListener {
 		Dimension size = addgoodlabel.getPreferredSize();
 		addgoodlabel.setBounds((width - size.width) / 2, 5, size.width, size.height);
 		size = nameLabel.getPreferredSize();
-		nameLabel.setBounds(100, 40, 100, 30);
+		nameLabel.setBounds(50, 40, 100, 30);
 		size = priceLabel.getPreferredSize();
-		priceLabel.setBounds(100, 95, 100, 30);
+		priceLabel.setBounds(50, 95, 100, 30);
 		size = stockLabel.getPreferredSize();
-		stockLabel.setBounds(100, 150, 100, 30);
+		stockLabel.setBounds(50, 150, 100, 30);
 
 		// set sizes and positions for labels
 		size = nameTxt.getPreferredSize();
-		nameTxt.setBounds(165, 40, 200, 30);
+		nameTxt.setBounds(130, 40, 300, 30);
 		size = priceTxt.getPreferredSize();
-		priceTxt.setBounds(165, 95, 100, 30);
+		priceTxt.setBounds(130, 95, 100, 30);
 		size = stockTxt.getPreferredSize();
-		stockTxt.setBounds(165, 150, 100, 30);
+		stockTxt.setBounds(130, 150, 100, 30);
 
 		// set sizes and positions for controls buttons
 		size = addBtn.getPreferredSize();
@@ -127,13 +127,6 @@ public class DeleteGoods extends JPanel implements ActionListener {
 					nameTxt.setText(name1);
 					priceTxt.setText(price1);
 					stockTxt.setText(stock1);
-					
-					System.out.println("--------------Start------------------");
-					System.out.println("ConsoleLog Lavel11: " + id1);
-					System.out.println("ConsoleLog Lavel11: " + name1);
-					System.out.println("ConsoleLog Lavel22: " + price1);
-					System.out.println("ConsoleLog Lavel33: " + stock1);
-					System.out.println("---------------END-----------------");
 				}
 				
 			}
@@ -169,19 +162,23 @@ public class DeleteGoods extends JPanel implements ActionListener {
 
 		try {
 
-			if(command.equals(editString)) {
-				System.out.println("actionCommand:" + editString);
+			if(command.equals(deleteString)) {
+				System.out.println("actionCommand:" + deleteString);
 				try {
 					
 					String name = nameTxt.getText();
 					int price = Integer.parseInt(priceTxt.getText());
 					int stock = Integer.parseInt(stockTxt.getText());
 					upgoods EDIT = new upgoods(id1, name, price, stock);
-					System.out.println("Admingoods2:" + editString.toString());
+					System.out.println("Admingoods2:" + deleteString.toString());
 					DAO.deleteGoods(EDIT);
 					tableModel.setRowCount(0);
 			           DAO.showDataTable(tableModel);
 			           table.setModel(tableModel);
+			           
+			           nameTxt.setText(null);
+			           priceTxt.setText(null);
+			           stockTxt.setText(null);
 			           
 			           System.out.println("--------------Start------------------");
 						System.out.println("ConsoleLog Lavel11: " + name);
