@@ -2,18 +2,14 @@ package AdminGood;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,10 +28,6 @@ public class Addgood extends JPanel implements ActionListener {
 	JComboBox<CatagoryItem> lv1ComboBox, lv2ComboBox, lv3ComboBox;
 	CatagoryItem selectedCode;
 
-	private static final int width = 400;
-	private static final int height = 200;
-	
-
 	JTextField nameTxt;
 	JTextField priceTxt;
 	JTextField stockTxt;
@@ -52,61 +44,57 @@ public class Addgood extends JPanel implements ActionListener {
 
 	public Addgood(JFrame jframe) {
 		
-//		super(frame, true);
-//		addWindowListener(new WindowAdapter() {
-//			@Override
-//			public void windowOpened(WindowEvent e) {
-//				ShowData();
-//			}
-//		});
-	    setLayout(new GridLayout(4, 2));
-		
 		// Create pane as container
 		//Container pane = getContentPane();
 		// set layout manager to manual
 		JPanel pane = this;
 		this.setLayout(null);
-	    pane.add(new JLabel("1:"));
+	    setLayout(null);
+	    JLabel label = new JLabel("1:");
+	    label.setBounds(0, 0, 0, 0);
+	    pane.add(label);
 	    lv1ComboBox = new JComboBox<CatagoryItem>();
-	    lv1ComboBox.setBounds(30, 40, 100, 30);
+	    lv1ComboBox.setBounds(308, 46, 100, 30);
 	    pane.add(lv1ComboBox);
 	    DAO.ComboBoxVL1(lv1ComboBox, 0);
 	    lv1ComboBox.addActionListener(this);
 	    
 	    lv2ComboBox = new JComboBox<CatagoryItem>();
-	    pane.add(new JLabel("2:"));
-	    lv2ComboBox.setBounds(30, 95, 100, 30);
+	    JLabel label_1 = new JLabel("2:");
+	    label_1.setBounds(0, 0, 0, 0);
+	    pane.add(label_1);
+	    lv2ComboBox.setBounds(308, 101, 100, 30);
 	    pane.add(lv2ComboBox);
 	    lv2ComboBox.addActionListener(this);
 	   
 	    
 	    lv3ComboBox = new JComboBox<CatagoryItem>();
-	    lv3ComboBox.setBounds(30, 150, 100, 30);
+	    lv3ComboBox.setBounds(308, 156, 100, 30);
 	    pane.add(lv3ComboBox);
 	    lv3ComboBox.addActionListener(this);
 	    
 	    nameLabel = new JLabel("Name");
-	    nameLabel.setBounds(180, 40, 100, 30);
+	    nameLabel.setBounds(458, 46, 100, 30);
 	    pane.add(nameLabel);
 	    
 	    priceLabel = new JLabel("Price");
-	    priceLabel.setBounds(180, 95, 100, 30);
+	    priceLabel.setBounds(458, 101, 100, 30);
 	    pane.add(priceLabel);
 	    
 	    stockLabel = new JLabel("Stocks");
-	    stockLabel.setBounds(180, 150, 100, 30);
+	    stockLabel.setBounds(458, 156, 100, 30);
 	    pane.add(stockLabel);
 	    
 	    nameTxt = new JTextField();
-	    nameTxt.setBounds(225, 40, 100, 30);
+	    nameTxt.setBounds(503, 46, 282, 30);
 	    pane.add(nameTxt);
 	    
 	    priceTxt = new JTextField();
-	    priceTxt.setBounds(225, 95, 100, 30);
+	    priceTxt.setBounds(503, 101, 100, 30);
 	    pane.add(priceTxt);
 	    
 	    stockTxt = new JTextField();
-	    stockTxt.setBounds(225, 150, 100, 30);
+	    stockTxt.setBounds(503, 156, 100, 30);
 	    pane.add(stockTxt);
 	    
 
@@ -114,11 +102,7 @@ public class Addgood extends JPanel implements ActionListener {
 
 		// create labels
 		JLabel addgoodlabel = new JLabel("Add Goods");
-//		JLabel idgoodsLabel = new JLabel("ID");
-//		JLabel nameLabel = new JLabel("Name");
-//		JLabel DescriptionLabel = new JLabel("Description");
-//		JLabel priceLabel = new JLabel("Price");
-//		JLabel stockLabel = new JLabel("Stock");
+
 
 		// create buttons
 		JButton addBtn = new JButton(addString);
@@ -127,73 +111,35 @@ public class Addgood extends JPanel implements ActionListener {
 		cancelBtn.setBackground(new Color(0, 255, 128));
 
 		// create texts
-//		idgoodsTxt = new JTextField(10);
-//		nameTxt = new JTextField(20);
-//		DescriptionTxt = new JTextField(15);
-//		priceTxt = new JTextField(10);
-//		stockTxt = new JTextField(10);
 
+		
 		// create control buttons.
 		addBtn.addActionListener(this);
 		cancelBtn.addActionListener(this);
 
 		// add labels
 		this.add(addgoodlabel);
-//		pane.add(idgoodsLabel);
-//		pane.add(nameLabel);
-//		pane.add(DescriptionLabel);
-//		pane.add(priceLabel);
-//		pane.add(stockLabel);
-
-		// add text fields
-//		pane.add(idgoodsTxt);
-//		pane.add(nameTxt);
-//		pane.add(DescriptionTxt);
-//		pane.add(priceTxt);
-//		pane.add(stockTxt);
-
+		
 		// add control buttons
 		pane.add(addBtn);
 		pane.add(cancelBtn);
 
 		// set sizes and positions for labels
 		Dimension size = addgoodlabel.getPreferredSize();
-		addgoodlabel.setBounds((width - size.width) / 2, 5, size.width, size.height);
-//		size = idgoodsLabel.getPreferredSize();
-//		idgoodsLabel.setBounds(70, 32, 14, 16);
-//		size = nameLabel.getPreferredSize();
-//		nameLabel.setBounds(70, 60, size.width, size.height);
-//		size = DescriptionLabel.getPreferredSize();
-//		DescriptionLabel.setBounds(70, 90, size.width, size.height);
-//		size = priceLabel.getPreferredSize();
-//		priceLabel.setBounds(70, 120, size.width, size.height);
-//		size = stockLabel.getPreferredSize();
-//		stockLabel.setBounds(70, 150, size.width, size.height);
-
-		// set sizes and positions for labels
-//		size = idgoodsTxt.getPreferredSize();
-//		idgoodsTxt.setBounds(140, 30, 120, 20);
-//		size = nameTxt.getPreferredSize();
-//		nameTxt.setBounds(140, 60, 120, 20);
-//		size = DescriptionTxt.getPreferredSize();
-//		DescriptionTxt.setBounds(140, 90, 120, 20);
-//		size = priceTxt.getPreferredSize();
-//		priceTxt.setBounds(140, 120, 120, 20);
-//		size = stockTxt.getPreferredSize();
-//		stockTxt.setBounds(140, 150, 120, 20);
+		addgoodlabel.setBounds(422, 13, 77, 14);
 		
 
 		// set sizes and positions for controls buttons
 		size = addBtn.getPreferredSize();
-		addBtn.setBounds(92, 190, size.width, size.height);
+		addBtn.setBounds(503, 197, 63, 23);
 		size = cancelBtn.getPreferredSize();
-		cancelBtn.setBounds(174, 190, size.width, size.height);
+		cancelBtn.setBounds(600, 197, 77, 23);
 
 		// set size and position for container
 		pane.setPreferredSize(new Dimension(400, 500));
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 235, 380, 241);
+		scrollPane.setBounds(58, 248, 827, 327);
 		this.add(scrollPane);
 
 		table = new JTable();
@@ -202,23 +148,6 @@ public class Addgood extends JPanel implements ActionListener {
 		JButton btnNewButton = new JButton("refresh");
 		btnNewButton.setBackground(new Color(0, 255, 128));
 		
-//		btnNewButton.setBackground(new Color(0, 255, 128));
-//		btnNewButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				ShowData();
-//			}
-//		});
-	    
-//	    DefaultTableModel model = new DefaultTableModel();
-//		model.addColumn("ID");
-//		model.addColumn("LV3");
-//		model.addColumn("LV2");
-//		model.addColumn("LV1");
-//		model.addColumn("NAME");
-//		model.addColumn("PRICE");
-//		model.addColumn("STOCKS");
-		
-
 		
 		String[] columnNames = {"ID", "LV3","LV2","LV1", "NAME", "PRICE", "STOCKS"};
         tableModel = new DefaultTableModel(columnNames, 0);
@@ -230,54 +159,25 @@ public class Addgood extends JPanel implements ActionListener {
 		table.getColumnModel().getColumn(1).setPreferredWidth(40);
 		table.getColumnModel().getColumn(2).setPreferredWidth(40);
 		table.getColumnModel().getColumn(3).setPreferredWidth(40);
-		table.getColumnModel().getColumn(4).setPreferredWidth(110);
-		table.getColumnModel().getColumn(5).setPreferredWidth(50);
-		table.getColumnModel().getColumn(6).setPreferredWidth(40);
+		table.getColumnModel().getColumn(4).setPreferredWidth(533);
+		table.getColumnModel().getColumn(5).setPreferredWidth(60);
+		table.getColumnModel().getColumn(6).setPreferredWidth(55);
 
 		setVisible(true);
 
 		System.out.println("AddformDialog() done!");
 
 	}
+	
+	public static void infoMessage(String message, String title) {
+		JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-//		String actionCommand = evt.getActionCommand();
-		// user presses "Add"
-//		if (actionCommand.equals(addString)) {
-//			System.out.println("actionCommand:" + addString);
-//			try {
-				// retrieve values from text fields.
-//				String idgoods = idgoodsTxt.getText();
-//				String name = nameTxt.getText();
-//				String Description = DescriptionTxt.getText();
-//				int price = Integer.parseInt(priceTxt.getText());
-//				int stock = Integer.parseInt(stockTxt.getText());
-//				Admingoods Pgoods = new Admingoods( name, price, stock);
-//				System.out.println("goods:" + Pgoods.toString());
-//				addGood(Pgoods);
-
-				// reset text fields
-//				idgoodsTxt.setText(null);
-//				nameTxt.setText(null);
-//				DescriptionTxt.setText(null);
-//				priceTxt.setText(null);
-//				stockTxt.setText(null);
-
-//			} catch (Exception ex) {
-//				System.err.println("Error! Invalid data.");
-//			}
-			// user presses "Cancel"
-//		} else if (actionCommand.equals(cancelString)) {
-//			System.out.println("actionCommand:" + cancelString);
-//			setVisible(false);
-//		}
-//		ShowData();
+		
 		String actionCommand = e.getActionCommand();
 		
-//	}
 		try {			
 			
 			if (e.getSource() == lv1ComboBox) {
@@ -307,26 +207,33 @@ public class Addgood extends JPanel implements ActionListener {
 				} catch (Exception ex) {
 
 				}
+				
 			}else if(actionCommand.equals(addString)) {
+				
+				if((nameTxt.getText().isEmpty()) || priceTxt.getText().isEmpty() || stockTxt.getText().isEmpty()) {
+					infoMessage("Please complete the information.", "Check your fucking field!");
+				} else {
+				
 				try {
 					String name = nameTxt.getText();
 					int unit_price = Integer.parseInt(priceTxt.getText());
 					int stocks = Integer.parseInt(stockTxt.getText());
+					
+					
+					
 					Goods CatagoryOj = new Goods(0 , idLv3, idLv2, idLv3, name, unit_price, stocks);
 					DAO.addGoods(CatagoryOj);
 					DAO.showDataTable(tableModel);
 				    table.setModel(tableModel);
+				    
+				    
 					
 				} catch(Exception ex) {
 					
 				}
+				}
 			}
-			
-			System.out.println("--------------Start------------------");
-		    System.out.println("ConsoleLog Lavel1: "+idLv1);
-		    System.out.println("ConsoleLog Lavel2: "+idLv2);
-		    System.out.println("ConsoleLog Lavel3: "+idLv3);
-		    System.out.println("---------------END-----------------");
+		
 
 		} catch (Exception ex) {
 			ex.printStackTrace();

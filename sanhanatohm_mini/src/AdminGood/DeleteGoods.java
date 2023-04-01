@@ -28,10 +28,10 @@ public class DeleteGoods extends JPanel implements ActionListener {
 	JLabel nameTxt;
 	JLabel priceTxt;
 	JLabel stockTxt;
-	
+
 	private static final String deleteString = "Delete";
 	private static final String refreshString = "Refresh";
-	
+
 	private JTable table;
 	String id1;
 	String name1;
@@ -62,6 +62,7 @@ public class DeleteGoods extends JPanel implements ActionListener {
 		// create control buttons.
 		addBtn.addActionListener(this);
 		refreshBtn.addActionListener(this);
+		setLayout(null);
 
 		// add labels
 		pane.add(addgoodlabel);
@@ -80,33 +81,33 @@ public class DeleteGoods extends JPanel implements ActionListener {
 
 		// set sizes and positions for labels
 		Dimension size = addgoodlabel.getPreferredSize();
-		addgoodlabel.setBounds((width - size.width) / 2, 5, size.width, size.height);
+		addgoodlabel.setBounds(434, 4, 81, 14);
 		size = nameLabel.getPreferredSize();
-		nameLabel.setBounds(50, 40, 100, 30);
+		nameLabel.setBounds(316, 39, 100, 30);
 		size = priceLabel.getPreferredSize();
-		priceLabel.setBounds(50, 95, 100, 30);
+		priceLabel.setBounds(316, 94, 100, 30);
 		size = stockLabel.getPreferredSize();
-		stockLabel.setBounds(50, 150, 100, 30);
+		stockLabel.setBounds(316, 149, 100, 30);
 
 		// set sizes and positions for labels
 		size = nameTxt.getPreferredSize();
-		nameTxt.setBounds(130, 40, 300, 30);
+		nameTxt.setBounds(396, 39, 300, 30);
 		size = priceTxt.getPreferredSize();
-		priceTxt.setBounds(130, 95, 100, 30);
+		priceTxt.setBounds(396, 94, 100, 30);
 		size = stockTxt.getPreferredSize();
-		stockTxt.setBounds(130, 150, 100, 30);
+		stockTxt.setBounds(396, 149, 100, 30);
 
 		// set sizes and positions for controls buttons
 		size = addBtn.getPreferredSize();
-		addBtn.setBounds(139, 190, size.width, size.height);
+		addBtn.setBounds(383, 189, 72, 23);
 		size = refreshBtn.getPreferredSize();
-		refreshBtn.setBounds(210, 190, size.width, size.height);
+		refreshBtn.setBounds(476, 189, 88, 23);
 
 		// set size and position for container
 		pane.setPreferredSize(new Dimension(400, 500));
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 235, 380, 241);
+		scrollPane.setBounds(58, 248, 827, 327);
 		this.add(scrollPane);
 		
 		String[] columnNames = {"ID", "LV3","LV2","LV1", "NAME", "PRICE","STOCK"};
@@ -140,9 +141,9 @@ public class DeleteGoods extends JPanel implements ActionListener {
 		table.getColumnModel().getColumn(1).setPreferredWidth(40);
 		table.getColumnModel().getColumn(2).setPreferredWidth(40);
 		table.getColumnModel().getColumn(3).setPreferredWidth(40);
-		table.getColumnModel().getColumn(4).setPreferredWidth(110);
-		table.getColumnModel().getColumn(5).setPreferredWidth(50);
-		table.getColumnModel().getColumn(6).setPreferredWidth(40);
+		table.getColumnModel().getColumn(4).setPreferredWidth(533);
+		table.getColumnModel().getColumn(5).setPreferredWidth(60);
+		table.getColumnModel().getColumn(6).setPreferredWidth(55);
 
 		scrollPane.setViewportView(table);
 		
@@ -179,13 +180,13 @@ public class DeleteGoods extends JPanel implements ActionListener {
 			           nameTxt.setText(null);
 			           priceTxt.setText(null);
 			           stockTxt.setText(null);
-			           
+
 			           System.out.println("--------------Start------------------");
 						System.out.println("ConsoleLog Lavel11: " + name);
 						System.out.println("ConsoleLog Lavel22: " + price);
 						System.out.println("ConsoleLog Lavel33: " + stock);
 						System.out.println("---------------END-----------------");
-						
+
 				}catch (Exception ex) {
 	                System.err.println("Error! Invalid data.");
 	            }

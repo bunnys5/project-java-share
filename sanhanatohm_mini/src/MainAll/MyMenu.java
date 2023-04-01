@@ -61,8 +61,6 @@ public MyMenu(JFrame frame) {
 		procurement = new Procurement(frame);
 		customer = new Customer(frame);
 		
-		int panelWidth = 400;
-		int panelHeight = 300;
 		
 		JMenuBar menuBar = new JMenuBar();
 		
@@ -89,7 +87,7 @@ public MyMenu(JFrame frame) {
 		frame.setJMenuBar(menuBar);
 		
 		
-		this.setPreferredSize(new Dimension(400, 300));
+		this.setPreferredSize(new Dimension(400, 700));
 	}
 
 	public JMenu createMenu2(String menuName2) {

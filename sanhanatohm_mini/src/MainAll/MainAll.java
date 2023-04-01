@@ -16,7 +16,7 @@ public class MainAll {
 		JFrame frame = new JFrame("Mini supplier");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		frame.setPreferredSize(new Dimension(400,600));
+		frame.setPreferredSize(new Dimension(950,750));
 		
 		
         frame.setLayout(new BorderLayout());
